@@ -4,7 +4,7 @@
 # Author: Adam Radovits
 #
 # Changelog:
-#	2022.02.03. @ RA - first version
+#	2022.02.04. @ RA - first version
 #
 
 # Signal file (for KURED sentinel file option)
