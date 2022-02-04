@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer for auto service restart and reboot signal service
+Requires=auto-restart-services.service
+
+[Timer]
+Unit=auto-restart-services.service
+OnBootSec=10
+OnUnitActiveSec=10min
+[Install]
+WantedBy=timers.target
