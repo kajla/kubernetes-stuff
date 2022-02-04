@@ -1,0 +1,10 @@
+[Unit]
+Description=This restart services after patch, create signal file for reboot if needed
+Wants=auto-restart-services.timer
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/auto-restart-services-reboot-signal.sh
+
+[Install]
+WantedBy=multi-user.target
