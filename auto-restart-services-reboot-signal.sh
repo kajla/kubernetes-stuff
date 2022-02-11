@@ -5,7 +5,7 @@
 #
 # Changelog:
 #	2022.02.04. @ RA - first version
-#
+#	2022.02.11. @ RA - small fix
 
 # Signal file (for KURED sentinel file option)
 SIGNALFILE=/var/run/reboot-required
@@ -75,9 +75,10 @@ else
 				fi
 			fi
 			# Check if something can't restart, so we need to reboot node
-			if [ $(zypper ps | grep '^[0-9]' | wc -l) -ne 0 ]; then
+			CANTRES=$(zypper ps | grep '^[0-9]')
+			if [ ! -z "${CANTRES}" ]; then
 				echo "Something can't restart:"
-				zypper ps | grep '^[0-9]'
+				echo "${CANTRES}"
 				echo "So create signal file: ${SIGNALFILE}"
 				touch ${SIGNALFILE}
 			else
