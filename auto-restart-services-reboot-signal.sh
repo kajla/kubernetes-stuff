@@ -6,6 +6,7 @@
 # Changelog:
 #	2022.02.04. @ RA - first version
 #	2022.02.11. @ RA - small fix
+#	2022.05.20. @ RA - security check added
 
 # Signal file (for KURED sentinel file option)
 SIGNALFILE=/var/run/reboot-required
@@ -79,8 +80,15 @@ else
 			if [ ! -z "${CANTRES}" ]; then
 				echo "Something can't restart:"
 				echo "${CANTRES}"
-				echo "So create signal file: ${SIGNALFILE}"
-				touch ${SIGNALFILE}
+				echo "Let's try again in 1 minute later..."
+				sleep 60
+				CANTRES=$(zypper ps | grep '^[0-9]' | grep -v calico-node)
+		    		if [ ! -z "${CANTRES}" ]; then
+		    	    		echo "We are sure now, something can't restart:"
+					echo "${CANTRES}"
+					echo "So create signal file: ${SIGNALFILE}"
+				 	touch ${SIGNALFILE}
+				fi
 			else
 				echo "zypper ps is empty, nothing to do"
 			fi
