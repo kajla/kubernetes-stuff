@@ -56,7 +56,7 @@ else
 		else
 			ZYPPERSTATUS=$(zypper ps -sss)
 			# Is zypper ps -sss is empty?
-			if [ -z ${ZYPPERSTATUS} ]; then
+			if [ -z "${ZYPPERSTATUS}" ]; then
 				echo "zypper ps -sss is empty, so there is no need to restart any service"
 			else
 				# If dbus upgraded, we recommend to reboot
