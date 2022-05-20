@@ -83,8 +83,8 @@ else
 				echo "Let's try again in 1 minute later..."
 				sleep 60
 				CANTRES=$(zypper ps | grep '^[0-9]' | grep -v calico-node)
-		    		if [ ! -z "${CANTRES}" ]; then
-		    	    		echo "We are sure now, something can't restart:"
+				if [ ! -z "${CANTRES}" ]; then
+					echo "We are sure now, something can't restart:"
 					echo "${CANTRES}"
 					echo "So create signal file: ${SIGNALFILE}"
 				 	touch ${SIGNALFILE}
