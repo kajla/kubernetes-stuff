@@ -76,7 +76,7 @@ else
 				fi
 			fi
 			# Check if something can't restart, so we need to reboot node
-			CANTRES=$(zypper ps | grep '^[0-9]')
+			CANTRES=$(zypper ps | grep '^[0-9]' | grep -v calico-node)
 			if [ ! -z "${CANTRES}" ]; then
 				echo "Something can't restart:"
 				echo "${CANTRES}"
